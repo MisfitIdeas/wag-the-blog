@@ -1,0 +1,4 @@
+wordpress-install-location: /var/html/
+mysql-db: mydb
+mysql-user: me
+mysql-pass: pass

@@ -1,0 +1,6 @@
+---
+ansible_ssh_host: 45.55.159.48
+ansible_ssh_user: root
+mysql_db: wp
+mysql_user: bloguser
+mysql_pass: ohMyGoshAPassword

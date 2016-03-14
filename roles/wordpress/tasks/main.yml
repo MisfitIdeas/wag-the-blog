@@ -1,0 +1,40 @@
+---
+- name: make WP Content directory
+  file: 
+    path: "{{ wordpress-install-location }}/wordpress/wp-content/"
+    state: directory 
+    owner: www-data 
+    group: www-data 
+    recurse: yes
+    mode: 0755      
+
+- name: Download and Extract WordPress
+  unarchive: 
+    src: http://wordpress.org/latest.tar.gz
+    dest: "{{ wordpress-install-location }}"
+    copy: no 
+  
+- name: Copy WordPress config file
+  template: 
+    src: wp-config.php.j2
+    dest: "{{ wordpress-install-location }}/wordpress/wp-config.php"
+ 
+- name: Copy WordPress Nginx file
+  template: 
+    src: wordpress.j2
+    dest: /etc/nginx/sites-available/wordpress 
+
+- name: Symlink WordPress nginx available as enabled
+  file: 
+    src: /etc/nginx/sites-available/wordpress
+    dest: /etc/nginx/sites-enabled/wordpress 
+    state: link
+
+- name: restart nginx
+  service: name=nginx state=restarted 
+
+- name: Symlink WordPress install location
+  file: 
+    src: "{{ wordpress-install-location }}/wordpress"
+    dest: /wp
+    state: link

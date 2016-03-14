@@ -1,0 +1,24 @@
+---
+- hosts: wp
+  remote_user: root
+  roles:
+    - core-utils
+    - nginx
+    - php-fpm
+    - tersmitten.percona-server
+    - tersmitten.percona-toolkit
+    - wordpress
+    - ufw
+  vars:
+      percona_server_databases_present:
+        - name: "{{ mysql_db }}"
+      percona_server_users_present_hosts:
+        - 'localhost'
+        - '%'
+      percona_server_users_present:
+        - name: "{{ mysql_user }}"
+          password: "{{ mysql_pass }}"
+          privs:
+            - '"{{ mysql_user }}".*:ALL'
+  
+

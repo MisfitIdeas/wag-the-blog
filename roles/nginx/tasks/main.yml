@@ -1,0 +1,17 @@
+---
+- name: Check if Nginx is installed
+  command: dpkg-query -l nginx
+  ignore_errors: yes
+  register: nginx_check
+
+- name: install Nginx
+  apt: name=nginx state=present
+  when: nginx_check.stderr.find('no packages found') != -1 
+
+- name: Disable default nginx host
+  file: 
+    path: /etc/nginx/sites-enabled/default
+    state: absent
+   
+- name: restart nginx
+  service: name=nginx state=restarted

@@ -1,0 +1,5 @@
+- src: tersmitten.percona-server
+  version: v1.3.1
+
+- src: tersmitten.percona-toolkit
+  version: v1.1.0

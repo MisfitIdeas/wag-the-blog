@@ -1,0 +1,59 @@
+---
+- name: Install ufw
+  action: apt update_cache=yes name=ufw
+  tags:
+    - ufw
+    - install 
+
+- name: Enable ufw logging
+  ufw: logging=on
+  tags:
+    - ufw
+    - config
+
+- name: Enable ufw and deny by default
+  ufw: state=reset policy=deny
+  tags:
+    - ufw
+    - config
+
+- name: Open incoming on specified ports
+  ufw: 
+    rule: allow 
+    proto: tcp 
+    port: "{{ item }}"
+  with_items: "{{ ufw_open_ports }}"
+  tags:
+    - ufw
+    - config  
+
+- name: Open incoming from external ips
+  ufw: 
+    rule: allow 
+    src: "{{ hostvars[item]['ansible_eth0']['ipv4']['address'] }}"
+  with_items: play_hosts
+  tags:
+    - ufw
+    - config
+
+- name: Open incoming from internal ips
+  ufw: 
+    rule: allow 
+    src: "{{ hostvars[item]['ansible_eth1']['ipv4']['address'] }}"
+  with_items: play_hosts
+  tags:
+    - ufw
+    - config
+
+- name: Open incoming from home address
+  ufw: rule=allow src={{ item }}
+  with_items: "{{ ufw_src }}"
+  tags:
+    - ufw
+    - config
+
+- name: Restart ufw
+  ufw: state=enabled
+  tags:
+    - ufw
+    - config  

@@ -1,13 +1,13 @@
 # WAG-the-Blog
 
-Ansible playbooks for setting up a LEMP stack for WordPress. This is heavily influenced by the wonderful [Trellis](https://github.com/roots/trellis) by [Roots](https://roots.io/)
+Ansible playbooks for setting up a LEMP stack for WordPress. This is heavily influenced by the wonderful Trellis by Roots. The main differences are WAG will use Percona instead of MariaDB; WAG adds the [Percona Toolkit](https://www.percona.com/software/mysql-tools/percona-toolkit) for MySQL; WAG uses UFW instead of ferm; and WAG emphasizes monitoring tools like dstat and htop a bit more than Trellis does.
 
 ## What's included
 
 WAG-the-Blog will configure any Ubuntu 14.04 server with the following:
 
 * Nginx (with FastCGI)
-* PHP 7.0
+* PHP FPM
 * Percona MySQL (a drop-in MySQL replacement)
 * Composer
 * WP-CLI

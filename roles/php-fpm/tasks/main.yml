@@ -1,0 +1,16 @@
+---
+- name: Install php-fpm and deps 
+  action: apt update_cache=yes name={{ item }}
+  with_items:
+    - php5-fpm 
+    - php5-mysql
+
+- name: Copy PHP config file
+  template: 
+    src: php.ini.j2
+    dest: /etc/php5/fpm/php.ini
+
+- name: restart php
+  service: name=php5-fpm state=restarted
+ 
+

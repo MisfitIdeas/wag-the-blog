@@ -1,0 +1,23 @@
+- name: Install system packages 
+  action: apt update_cache=yes name={{ item }}
+  with_items:
+    - software-properties-common
+    - dstat 
+    - htop 
+    - sysstat
+    - tar 
+    - unzip 
+
+- name: Install core Python packages 
+  action: apt update_cache=yes name={{ item }}
+  with_items:  
+    - gcc
+    - python-pip
+    - python-setuptools
+    - python-dev
+
+- name: install core pip installs 
+  pip: name={{ item }}
+  with_items:
+    - glances
+
