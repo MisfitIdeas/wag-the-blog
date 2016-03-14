@@ -20,5 +20,7 @@
           password: "{{ mysql_pass }}"
           privs:
             - '"{{ mysql_user }}".*:ALL'
+          hosts:
+          - '%'
   
 
