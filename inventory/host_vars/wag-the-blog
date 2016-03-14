@@ -1,6 +1,7 @@
 ---
-ansible_ssh_host: 45.55.159.48
-ansible_ssh_user: root
+ansible_host: 45.55.159.48
+ansible_user: root
+ufw_open_ports: [22, 80]
 mysql_db: wp
 mysql_user: bloguser
 mysql_pass: ohMyGoshAPassword

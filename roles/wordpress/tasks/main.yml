@@ -1,7 +1,7 @@
 ---
 - name: make WP Content directory
   file: 
-    path: "{{ wordpress-install-location }}/wordpress/wp-content/"
+    path: "{{ wordpress_install_location }}/wordpress/wp-content/"
     state: directory 
     owner: www-data 
     group: www-data 
@@ -11,13 +11,13 @@
 - name: Download and Extract WordPress
   unarchive: 
     src: http://wordpress.org/latest.tar.gz
-    dest: "{{ wordpress-install-location }}"
+    dest: "{{ wordpress_install_location }}"
     copy: no 
   
 - name: Copy WordPress config file
   template: 
     src: wp-config.php.j2
-    dest: "{{ wordpress-install-location }}/wordpress/wp-config.php"
+    dest: "{{ wordpress_install_location }}/wordpress/wp-config.php"
  
 - name: Copy WordPress Nginx file
   template: 
@@ -35,6 +35,6 @@
 
 - name: Symlink WordPress install location
   file: 
-    src: "{{ wordpress-install-location }}/wordpress"
+    src: "{{ wordpress_install_location }}/wordpress"
     dest: /wp
     state: link
