@@ -12,7 +12,7 @@ WAG-the-Blog will configure any Ubuntu 14.04 server with the following:
 * Composer
 * WP-CLI
 * Memcached
-* ufw
+* UFW
 * dstat 
 * [glances](https://github.com/nicolargo/glances) installed via PIP
 * htop
