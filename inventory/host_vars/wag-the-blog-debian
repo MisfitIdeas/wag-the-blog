@@ -1,0 +1,7 @@
+---
+ansible_host: 107.170.244.41
+ansible_user: root
+ufw_open_ports: [22, 80]
+mysql_db: wp
+mysql_user: anotherbloguser
+mysql_pass: ohMyGoshADifferentPassword!
