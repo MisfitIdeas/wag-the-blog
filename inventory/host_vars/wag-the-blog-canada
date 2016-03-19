@@ -3,5 +3,5 @@ ansible_host: 159.203.34.152
 ansible_user: root
 ufw_open_ports: [22, 80]
 mysql_db: wp
-mysql_user: canada
+mysql_user: wpUserEh
 mysql_pass: whatsThisAllAboot
