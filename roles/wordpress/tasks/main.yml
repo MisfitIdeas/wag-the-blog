@@ -13,6 +13,10 @@
     src: http://wordpress.org/latest.tar.gz
     dest: "{{ wordpress_install_location }}"
     copy: no 
+
+- name: Fetch random salts for Wordpress config
+  local_action: command curl https://api.wordpress.org/secret-key/1.1/salt/
+  register: wp_salt
   
 - name: Copy WordPress config file
   template: 
